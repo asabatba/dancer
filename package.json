@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "copy:public": "cp -r public/* dist/",
-    "build": "esbuild --bundle src/index.ts --outdir=dist && yarn copy:public",
+    "build": "esbuild --bundle src/index.ts --outdir=dist --define:DEV_ENV=false && yarn copy:public",
     "build:dev": "esbuild --bundle src/index.ts --outdir=dist --define:DEV_ENV=true && yarn copy:public",
     "dev": "nodemon -w src -e ts,css,js --exec \"yarn run build:dev\""
   },
