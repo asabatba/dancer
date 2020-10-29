@@ -15,9 +15,9 @@ export type LettersMap2 = { [K in Letters]: { lat: number, lng: number, online: 
 
 export const REFRESH_MS = 10_000;
 
-export const MY_LETTER = stream<string>();
+export const MY_LETTER = stream<string | undefined>();
 export const LATLNG = stream<L.LatLng>();
-export const WEB_SOCKET = stream<WebSocket>();
+export const WEB_SOCKET = stream<WebSocket | undefined>();
 
 export const EVERY_ONE = stream<LettersMap2>();
 export const AVG = EVERY_ONE.map(vs => {

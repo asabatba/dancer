@@ -62,7 +62,7 @@ const MapPage: m.ClosureComponent = () => {
         },
         view: function () {
 
-            return m('div' + b.width('80vw').height('60vh').borderRadius('1rem'));
+            return m('div' + b.width('90vw').height('80vh').borderRadius('1rem'));
         }
     };
 };

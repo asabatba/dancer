@@ -7,7 +7,7 @@ const ChooseLetter: m.Component = {
 
     view: function () {
 
-        const randomLetters = ['d', 'a', 'n', 'c', 'e'].sort(() => Math.random() - 0.5);
+        const randomLetters = ['d', 'a', 'n', 'c', 'e'].sort(() => Math.random() - .5);
         const isDance = randomLetters.join('') == 'dance';
         const rngColor = () => '#' + ['f0', '60', '10'].sort(() => Math.random() - .5).join('');
 
@@ -30,7 +30,12 @@ const ChooseLetter: m.Component = {
             randomLetters.map((l, idx) => {
 
                 return m('button' + style[idx],
-                    { onclick: () => { MY_LETTER(l); } },
+                    {
+                        onclick: () => {
+                            MY_LETTER(l);
+                            localStorage.setItem('letter', l);
+                        }
+                    },
                     l + '.');
             }),
         );

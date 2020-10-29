@@ -23,17 +23,23 @@ const Result: m.ClosureComponent = () => {
 
     return {
 
+        onremove: function () {
+            WEB_SOCKET()?.close();
+            WEB_SOCKET(undefined);
+        },
+
         oninit: function () {
 
             getLocation().then((loc: Position) => {
 
                 const { latitude, longitude } = loc.coords;
-                content = latitude + ', ' + longitude;
+                // content = latitude + ', ' + longitude;
+                content = '^ ^';
                 LATLNG(new LatLng(latitude, longitude));
 
                 const updateStatus = () => {
-                    if (WEB_SOCKET().readyState === WebSocket.OPEN) {
-                        WEB_SOCKET().send(JSON.stringify({
+                    if (WEB_SOCKET()?.readyState === WebSocket.OPEN) {
+                        WEB_SOCKET()?.send(JSON.stringify({
                             letter: MY_LETTER(),
                             lat: latitude + (Math.random() - .5) / 1_000,
                             lng: longitude + (Math.random() - .5) / 1_000,

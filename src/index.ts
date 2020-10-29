@@ -10,27 +10,38 @@ import { MY_LETTER, WEB_SOCKET } from "./globals";
 const Home: m.Component = {
 
     oninit: function () {
+        const letter = localStorage.getItem('letter');
+        if (letter) {
+            MY_LETTER(letter);
+        }
     },
 
     view: function () {
 
-        let see;
+        let content: m.Children;
         if (!MY_LETTER()) {
-            see = m(ChooseLetter);
+            content = m(ChooseLetter);
         } else if (!WEB_SOCKET()) {
-            see = m(WSConnect);
+            content = m(WSConnect);
         } else if (WEB_SOCKET()) {
-            see = [m(Result), m(MapPage)];
+            content = [m(Result), m(MapPage)];
         }
 
         return m('div' + b.h('100%').d('flex')
             .flexFlow('column').alignItems('center').justifyContent('center'),
-            see,
+            content,
+            m('button' + b.position('fixed').top(5).right(5).zIndex('10')
+                .c('#ffaaaa').cursor('pointer').fontSize('14pt')
+                .bc('transparent').border('none').outline('none'),
+                { onclick: () => { MY_LETTER(undefined); } },
+                'X'),
         );
     }
 };
 
-const body = document.getElementsByTagName('body')[0];
-body.className = b.bc('#000').c('#e6d6c6');
+(() => {
+    const body = document.getElementsByTagName('body')[0];
+    body.className = b.bc('#111').c('#e6d6c6');
 
-m.mount(body, Home);
+    m.mount(body, Home);
+})();
