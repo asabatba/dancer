@@ -1,16 +1,13 @@
 
 import m from 'mithril';
-import { EVERY_ONE, LettersMap, LettersMap2, WEB_SOCKET } from '../globals';
+import { EVERY_ONE, LettersMap, LettersMap2, WEB_SOCKET, WS_URL } from '../globals';
 
-declare const DEV_ENV: boolean | undefined;
 
 const WSConnect: m.Component = {
 
     oninit: function () {
 
-        const wss = new WebSocket(DEV_ENV
-            ? `ws://${location.hostname}:9000/ws`
-            : `wss://${location.host}/ws`);
+        const wss = new WebSocket(WS_URL);
 
         wss.onopen = (ev) => {
             WEB_SOCKET(wss);
