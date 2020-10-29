@@ -2,11 +2,15 @@
 import m from 'mithril';
 import { EVERY_ONE, LettersMap, LettersMap2, WEB_SOCKET } from '../globals';
 
+declare const DEV_ENV: boolean | undefined;
+
 const WSConnect: m.Component = {
 
     oninit: function () {
 
-        const wss = new WebSocket(`wss://${location.hostname}/ws`);
+        const wss = new WebSocket(DEV_ENV
+            ? `ws://${location.hostname}:9000/ws`
+            : `wss://${location.host}/ws`);
 
         wss.onopen = (ev) => {
             WEB_SOCKET(wss);

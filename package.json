@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild --bundle src/index.ts --outdir=dist && cp -r public/* dist/",
-    "dev": "nodemon -w src -e ts,css,js --exec \"yarn run build\""
+    "copy:public": "cp -r public/* dist/",
+    "build": "esbuild --bundle src/index.ts --outdir=dist && yarn copy:public",
+    "build:dev": "esbuild --bundle src/index.ts --outdir=dist --define:DEV_ENV=true && yarn copy:public",
+    "dev": "nodemon -w src -e ts,css,js --exec \"yarn run build:dev\""
   },
   "devDependencies": {
     "@types/leaflet": "^1.5.17",
