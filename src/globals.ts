@@ -6,7 +6,7 @@ declare const DEV_ENV: boolean | undefined;
 
 export const WS_URL = DEV_ENV
     ? `ws://${location.hostname}:9000/ws`
-    : `wss://${location.host}/ws`;
+    : `wss://disco.arsaba.dev/ws`;
 
 export type Letters = 'a' | 'b' | 'c' | 'd' | 'e';
 export type LettersMap = { [K in Letters]: { lat: number, lng: number, online: string; } };
